@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function(){
+        $("#sgnup").click(function(event){
+                    let obj={
+                        type:"get",
+                        url:"/signup",
+                        data:{
+                            semail:$("#semail").val(),
+                            spwd:$("#spwd").val(),
+                            utype:$("#utype").val()
+                        }
+                    }
+                    $.ajax(obj).done(function(resp)
+                    {
+                      alert(resp);
+                      // $("#msgsignup").html(resp);
+                       
+
+                    }).fail(function(err)
+                    {
+                        alert(err.statusText);
+                    })
+
+                })
+
+        $("#login").click(function(event){
+          let obj={
+                        type:"get",
+                        url:"/login-process",
+                        data:{
+                            lemail:$("#lemail").val(),
+                            lpwd:$("#lpwd").val()
+                        }
+                    }
+            $.ajax(obj).done(function(resp) {
+                // $("#msglogin").html(resp);
+                if (resp === "Influencer") {
+                    location.href = "influencer-dashboard";
+                } else if (resp=== "Clerk") {
+                    location.href ="clerkdashboard" ;
+                } else {
+                    alert(resp);
+                }
+            })
+        })
+      })
+    </script>
+<body>
+    <center>
+        <h1>Project</h1> <br> 
+        <input type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#signupModal" value="Signup"></input>
+        <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
+        <button type="button" class="btn btn-outline-success" onclick="location.href='/influencer-dashboard'">Influencer dashboard</button>
+         <button type="button" class="btn btn-outline-success" onclick="location.href='/clerkdashboard'">Clerk dashboard</button>
+         <button type="button" class="btn btn-outline-success" onclick="location.href='/admin-dash'">Admin dasboard</button>
+       
+
+
+        
+
+    </center>
+
+<!-- Login     -->
+    <div id="modalLogin" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p> <form action="/login-process" >
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" name="lemail" id="lemail" placeholder="name@example.com">
+                    <label for="lemail">Email address</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control" name="lpwd" id="lpwd" placeholder="Password">
+                    <label for="lpwd">Password</label>
+                  </div>
+                 </form>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="login">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+<!-- Signup -->
+      <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/signup" method="get" enctype="multipart/form-data">
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Email address</label>
+                      <input type="email" class="form-control"id="semail" name="semail" aria-describedby="emailHelp">
+                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                      <input type="password" class="form-control" name="spwd" id="spwd">
+                    </div>
+                    Select your category
+                    <select name="utype" id="utype">
+                      <option value="Select your category">Select your category</option>
+                      <option value="Influencer">Influencer</option>
+                      <option value="Clerk">Clerk</option>
+                    </select> <br>
+                   
+                  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="sgnup">Signup</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+</html>

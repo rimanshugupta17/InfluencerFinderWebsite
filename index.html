@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="script/alertt.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#sgnup").click(function(){
+      
+                let obj={
+                    type:"get",
+                    url:"/signup",
+                    data:{
+                        semail:$("#semail").val(),
+                        spwd:$("#spwd").val(),
+                        utype:$("#utype").val()
+                    }
+                }
+                $.ajax(obj).done(function(resp)
+                {
+                  alert(resp);
+                  $("#msgsignup").html(resp);
+                  if(resp=""){
+                    alert("Email already registered");
+                  }
+                   
+
+                }).fail(function(err)
+                {
+                    alert(err.statusText);
+                })
+
+            })
+
+    $("#login").click(function(event){
+      let obj={
+                    type:"get",
+                    url:"/login-process",
+                    data:{
+                        lemail:$("#lemail").val(),
+                        lpwd:$("#lpwd").val()
+                    }
+                }
+        $.ajax(obj).done(function(resp) {
+            // $("#msglogin").html(resp);
+            if (resp === "Influencer") {
+                location.href = "influencer-dashboard";
+            } else if (resp=== "Clerk") {
+                location.href ="clerkdashboard" ;
+            } else {
+                alert(resp);
+            }
+        })
+    })
+  })
+</script>
+
+
+
+<style>
+  .rem{
+    text-decoration: none;
+    color: black;
+  }
+  .rem:hover{
+    color: red;
+  }
+</style>
+<body>
+    <div >
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" 
+        <div class="container-fluid"><img src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1720915200&semt=ais_user" alt="" width="80px" height="80px"> 
+            <h4  style="margin-left: 50px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; "> <b> www.influencer.com   </b></h4>   
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a class="rem" style="font-size: 20px;" href="">Our Services</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a class="rem" style="font-size: 20px;" href="">Our Team</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a class="rem" style="font-size: 20px;" href="">Reach Us</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+              <button style="margin-left: 350px;" type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</button> &nbsp;&nbsp;&nbsp;
+              <button style="margin-left: 10px;"  type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
+              <!-- <button style="margin-left: 10px;" type="button" class="btn btn-outline-warning">Our services</button>
+              <button style="margin-left: 10px;" type="button" class="btn btn-outline-secondary">Our Team</button>
+              <button style="margin-left: 10px;" type="button" class="btn btn-outline-info">Reach Us</button> -->
+              <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a style="font-size: 20px;" href="">Our Services</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a style="font-size: 20px;" href="">Our Team</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a style="font-size: 20px;" href="">Reach Us</a>&nbsp;&nbsp;&nbsp;&nbsp; -->
+
+
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://influencer-hnt5.onrender.com/pics/9559250.jpg" class="d-block w-100" alt="..." >
+          </div>
+          <div class="carousel-item">
+            <img src="https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/5/9/598a79f713229c82bf8944c69ded2c36bf37dbaf2b67de0792c4d557683c6481/social-media-influencer-graphic-slide1.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div style="width: 1600px;  height: 500px; margin-top: 100px;">
+        <div style="width: 700px; height: 500px;  float: left; margin-left: 50px;">
+          <h4 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; "> Influencer Discovery platform</h4>
+            <br> <h2 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> <b>Discover the Best Influencers</b> </h2>
+            <h2 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> <b>For your brand</b></h2> 
+            <br>
+            <h5 style="font-family:'Times New Roman', Times, serif ;">Search for content creators to partner with in our massive influencer</h5>
+            <h5 style="font-family:'Times New Roman', Times, serif ;">database containing 162.2M+ accounts across Instagram, YouTube,</h5>
+            <h5 style="font-family:'Times New Roman', Times, serif ;">TikTok, Twitter, and Twitch. Apply filters to discover the perfect</h5>
+            <h5 style="font-family:'Times New Roman', Times, serif ;">influencer match for your brand</h5>
+        </div>
+        <div style="width: 700px; height: 600px; float: left; margin-left: 50px; ">
+          <img src="https://a.storyblok.com/f/103674/1200x1200/ec740f97ce/discovery-overview.png" width="550px" height="500px" alt="">
+        </div>
+      </div>
+
+<div>
+  <h1 style="text-align: center; background-color: lightblue; margin-top: 100px; color: white;">Our services</h1>
+</div>
+
+<div class="container" >
+  <div class="row">
+    <div class="col-md-3">
+
+
+
+<div class="card mt-5 md-5" >
+  <img src="https://cdn.pixabay.com/photo/2023/05/21/16/31/teamwork-8008840_1280.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: oblique;">Collaborations</h5>
+    <p class="card-text"></p>
+    <h5 style="color: blue; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> Facilitate impactful partnerships between Influencer  and Brand . Discover their joint projects and collaborations here!.  </div>
+</h4></div> </div>
+<div class="col-md-3">
+
+<div class="card mt-5 md-5">
+  <img src="https://www.shutterstock.com/image-vector/business-handshake-line-icon-outline-260nw-1251805828.jpg" height="280px" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: oblique;">Meet & Greet</h5>
+    <p class="card-text"></p>
+    <h5  style="color: blue; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Find influencers who align perfectly with your brand's values and goals. Collaborate on impactful projects that resonate with your audience.</h5>
+  </div>
+</div></div>
+<div class="col-md-3">
+
+<div class="card mt-5 md-5" >
+  <img src="https://png.pngtree.com/png-vector/20190828/ourmid/pngtree-promotion-headline-with-red-speech-bubble-png-image_1714779.jpg" height="280px" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"  style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: oblique;">Promotions</h5>
+    <p class="card-text"></p>
+    <h5 style="color: blue; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> Engage in personalized meet-ups and collaborations between influencers and brand. Build lasting relationships. </h5>
+  </div>
+</div></div>
+<div class="col-md-3">
+
+<div class="card mt-5 md-5" >
+  <img src="https://img.freepik.com/premium-vector/influencer-marketing-concept-with-man-holding-megaphone-with-social-media-logo-arrow-graphic_112255-1702.jpg" height="280px" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"  style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-style: oblique;">Influencer Marketing</h5>
+    <p class="card-text"></p>
+    <h5 style="color: blue; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Share upcoming events organized by influencers. Brands can discover and participate in these events to engage with their audience.. </h5>
+
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <h1 style="text-align: center; background-color: rgb(55, 6, 250); margin-top: 100px; color: white;">Our Team</h1>
+</div>  
+
+
+
+
+
+
+
+<div class="row" >
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+        <img src="\pics\Screenshot 2024-07-16 195128.png" width="550px" height="550px" alt="">
+        <h4 class="card-title" style="text-align:  center; color: purple; font-family:Arial, Helvetica, sans-serif">Under The Guidance of</h5>
+          <h5 style="text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;"> Mr. Rajesh Bansal</h5>
+          <h6 style="text-align: center;"> (Author of Real Java)</h6>
+
+        <p class="card-text"></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <img src="pics\rimanshu.jpeg" width="550px" height="550px" alt="">
+        <h4 class="card-title" style="text-align:  center; color: purple; font-family:Arial, Helvetica, sans-serif"> Developed By</h4>
+        <h5 style="text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;"> Rimanshu Gupta</h5>
+        <h6 style="text-align: center;"> (Student at DR. B.R Ambedkar National Institute Of Technology,Jalandhar)</h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div>
+  <h1 style="text-align: center; background-color: rgb(55, 6, 250); margin-top: 100px; color: white;">Reach Us</h1>
+</div>  
+<div> <center>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.6622720853475!2d75.53326897934569!3d31.39587459999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a51d30c180edf%3A0x5b7633718d17ef33!2sDr%20B%20R%20Ambedkar%20National%20Institute%20of%20Technology%20Jalandhar!5e0!3m2!1sen!2sin!4v1722883505318!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</center></div>
+
+
+
+ <!-- Footer Section -->
+ <div class="bg-dark text-white py-4">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              <h4>Contact Us</h4>
+              <p>Email: rimanshugupta1217@gmail.com</p>
+              <p>Phone: 9041775534</p>
+          </div>
+          <div class="col-md-6">
+              <h4>Follow Us</h4>
+              <a href="#" class="text-white me-2">Facebook</a>
+              <a href="#" class="text-white me-2">Twitter</a>
+              <a href="#" class="text-white">Instagram</a>
+          </div>
+      </div>
+      <div class="text-center mt-3">
+          <p>&copy; 2024 www.influencer.com. All rights reserved.</p>
+      </div>
+  </div>
+</div>
+
+<!-- Login     -->
+<div id="modalLogin" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p> <form action="/login-process" >
+          <div class="form-floating mb-3">
+              <input type="email" class="form-control" name="lemail" id="lemail" placeholder="name@example.com">
+              <label for="lemail">Email address</label>
+            </div>
+            <div class="form-floating">
+              <input type="password" class="form-control" name="lpwd" id="lpwd" placeholder="Password">
+              <label for="lpwd">Password</label>
+            </div>
+           </form>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="login">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Signup -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title </h1>
+        <span id="msgsignup">*</span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form action="/signup" method="get" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control"id="semail" name="semail" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" name="spwd" id="spwd">
+              </div>
+              Select your category
+              <select name="utype" id="utype">
+                <option value="Select your category">Select your category</option>
+                <option value="Influencer">Influencer</option>
+                <option value="Clerk">Clerk</option>
+              </select> <br>
+             
+            
+      </div>    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="sgnup">Signup</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
